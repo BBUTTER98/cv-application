@@ -1,7 +1,9 @@
-  import { Component } from 'react';
-  import './App.css';
-  import uniqid from "uniqid";
-  import General from "./components/General"
+import { Component } from 'react';
+import './App.css';
+import uniqid from "uniqid";
+import General from "./components/General"
+import Abilities from './components/Abilities';
+import Education from './components/Education';
   class App extends Component{
     constructor(props){
       super(props);
@@ -14,22 +16,16 @@
           {number: "+48000111333"},
           {mail: "example@mail.com"},
         ],
-        edu:{
-          actual:{
-            id: uniqid(),
-            name: "school name",
-            date_start:"start date",
-            date_finish:"finish date",
-          },
-          list:[],
-        },
-        abilities:{
-          actual:{
+        edu:[{
+              id: uniqid(),
+              name: "school name",
+              date_start:"start date",
+              date_finish:"finish date",
+        }],
+        abilities:[{
             id: uniqid(),
             name: "example of ability",
-          },
-          list:[],
-        },
+        }],
         practice:{
           actual:{
             id: uniqid(),
@@ -63,10 +59,45 @@
           general: updatedGeneral,
         };
       });
-    };    
+    };
+    addAbility = (value) =>{
+      const obj = {
+        id:uniqid(),
+        name:value,
+      }
+      this.setState((prevState)=>{
+        return {
+          abilities: [...prevState.abilities,obj]
+        }
+      })
+    }
+    removeAbility = (id) =>{
+      this.setState((prevState)=>{
+        const updatedState = prevState.abilities.filter((obj)=>{
+          if(obj.id !==id){
+            return obj;
+          } 
+        });
+        return{
+          abilities: updatedState,
+        }
+      })
+    }
+    addSchool = (obj) =>{
+      this.setState((prevState)=>{
+        return {
+          edu: [...prevState.edu,obj]
+        }
+      })
+    }
+    
     render(){
       return (
-        <General property={this.state.general} modify={this.modifyGeneral}/>
+        <>
+          <General property={this.state.general} modify={this.modifyGeneral}/>
+          <Abilities list={this.state.abilities} handleClick={this.removeAbility} handleSubmit={this.addAbility}/>
+          <Education list={this.state.edu} add={this.addSchool}/>
+        </>
       )
     }
   }
