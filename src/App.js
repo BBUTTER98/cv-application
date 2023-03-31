@@ -4,6 +4,7 @@ import uniqid from "uniqid";
 import General from "./components/General"
 import Abilities from './components/Abilities';
 import Education from './components/Education';
+import Career from './components/Career';
   class App extends Component{
     constructor(props){
       super(props);
@@ -26,23 +27,16 @@ import Education from './components/Education';
             id: uniqid(),
             name: "example of ability",
         }],
-        practice:{
-          actual:{
+        practice:[{
             id: uniqid(),
             name: "Company name",
             position: "Your position",
-            task:{
-              id: uniqid(),
-              name: "name task which you were doing in company",
-            },
-            list:[],
+            task:"Example tasks",
             date_start: "Start date",
             date_finish:"Finish date",
-          },
-          list:[],
+          }],
         }
       }
-    }
     modifyGeneral = (name, value) => {
       this.setState((prevState) => {
         const updatedGeneral = prevState.general.map((obj) => {
@@ -60,20 +54,17 @@ import Education from './components/Education';
         };
       });
     };
-    addAbility = (value) =>{
-      const obj = {
-        id:uniqid(),
-        name:value,
-      }
+    add = (obj, param) =>{
       this.setState((prevState)=>{
-        return {
-          abilities: [...prevState.abilities,obj]
+        console.log(prevState[param]);
+        return{
+          [param]: [...prevState[param],obj],
         }
       })
     }
-    removeAbility = (id) =>{
+    remove = (id, param) =>{
       this.setState((prevState)=>{
-        const updatedState = prevState.abilities.filter((obj)=>{
+        const updatedState = prevState[param].filter((obj)=>{
           if(obj.id !==id){
             return obj;
           } 
@@ -81,22 +72,14 @@ import Education from './components/Education';
         return{
           abilities: updatedState,
         }
-      })
-    }
-    addSchool = (obj) =>{
-      this.setState((prevState)=>{
-        return {
-          edu: [...prevState.edu,obj]
-        }
-      })
-    }
-    
+      })}
     render(){
       return (
         <>
-          <General property={this.state.general} modify={this.modifyGeneral}/>
-          <Abilities list={this.state.abilities} handleClick={this.removeAbility} handleSubmit={this.addAbility}/>
-          <Education list={this.state.edu} add={this.addSchool}/>
+          <General property={this.state.general} modify={this.modifyGeneral}/><br />
+          <Abilities list={this.state.abilities} handleClick={this.remove} handleSubmit={this.add}/><br />
+          <Education list={this.state.edu} add={this.add}/><br />
+          <Career list={this.state.practice} add={this.add}/><br />
         </>
       )
     }

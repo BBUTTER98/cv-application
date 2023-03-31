@@ -4,13 +4,13 @@ function Education(props){
         <div>
             {props.list.map((obj)=>{
                 return (
-                <>
+                <div key={obj.id}>
 
                     <div id="school-name">{obj.name}</div>
                     <div id="title">{obj.title}</div>
                     <div id="start-date">{obj.start}</div>
                     <div id="end-date">{obj.end}</div>
-                </>
+                </div>
                 )
             })}
             <EduForm add={props.add}/>
