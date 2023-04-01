@@ -8,7 +8,8 @@ function CareerForm(props){
         position:'',
         task:'',
         date_start:'',
-        date_end:'',
+        date_finish:'',
+        tasks:[],
     });
     const handleChange = (e) =>{
         const { value, id } = e.target;
@@ -27,15 +28,16 @@ function CareerForm(props){
                 position:'',
                 task:'',
                 date_start:'',
-                date_end:'',
+                date_finish:'',
+                tasks:[],
             });
         }}>
             <input type="text" id="name" onChange={handleChange} value={exp.name} placeholder="Company Name"/>
             <input type="text" id="position" onChange={handleChange} value={exp.position} placeholder="Position"/>
-            <input type="text" id="task" onChange={handleChange} value={exp.task} placeholder="Task you were doing"/>
+            <input type="text" id="task" onChange={handleChange} value={exp.task} placeholder="Description of your work"/>
             <input type="text" id="date_start" onChange={handleChange} value={exp.date_start} placeholder="Start date"/>
-            <input type="text" id="date_end" onChange={handleChange} value={exp.date_end} placeholder="Finish date/until now"/>
-            <button type="submit">Add</button>
+            <input type="text" id="date_finish" onChange={handleChange} value={exp.date_finish} placeholder="Finish date/until now"/>
+            <button type="submit">+</button>
         </form>
     )
 }

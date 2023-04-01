@@ -35,9 +35,9 @@ function EduForm(props){
     }}>
         <input type="text" value={edu.name} placeholder="School name" onChange={handleChange} id="name"/>
         <input type="text" value={edu.title} placeholder="Title of Study" onChange={handleChange} id="title"/>
-        <input type="text" value={edu.start} placeholder="Start date" onChange={handleChange} id="start"/>
-        <input type="text" value={edu.end} placeholder="Finish date (optional)" onChange={handleChange} id="end"/>
-        <button type="submit">Add School</button>
+        <input type="text" value={edu.start} placeholder="Start date (DD-MM-YYYY)" onChange={handleChange} id="start"/>
+        <input type="text" value={edu.end} placeholder="Finish date (DD-MM-YYYY)" onChange={handleChange} id="end"/>
+        <button type="submit">+</button>
     </form>
     )
 }

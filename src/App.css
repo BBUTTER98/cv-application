@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
+body{
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input{
+  height: 40px;
+  padding: 5px 10px;
+  font-size: 20px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button{
+  height: 50px;
+  padding: 5px 10px;
+  min-width: 50px;
+  font-size: 20px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-container{
+  width: 60%;
+  margin: auto;
+  font-size: 150%;
+}
+.main-heading{
+    margin-bottom: 10px;
+}
+.general{
+  padding-top: 20px;
+}
+.general > input{
+  height: 30px;
+  font-size: 18px;
+}
+.general .container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: flex-end;
+  gap: 10px;
 }
-
-.App-link {
-  color: #61dafb;
+.first{
+  font-size: 24px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.abilities-ul{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.edu-main{
+  display: grid;
+  gap: 10px;
+}
+.edu-container .bold-section{
+  display: flex;
+  gap: 5px;
+  font-weight: 600;
+}
+.c-base-info{
+  display: flex;
+}
+.company{
+  flex: 2;
+}
+.dates{
+  display: flex;
+  gap: 2px;
 }

@@ -10,30 +10,29 @@ import Career from './components/Career';
       super(props);
       this.state = {
         general:[
-          {firstName:"First name"},
-          {lastName:"Last name"},
+          {firstName:"First_name"},
+          {lastName:"Last_name"},
           {city:"Example city"},
-          {postCode:"e.g. 503-12"},
+          {postCode:"Examle post-code"},
           {number: "+48000111333"},
           {mail: "example@mail.com"},
         ],
-        edu:[{
-              id: uniqid(),
-              name: "school name",
-              date_start:"start date",
-              date_finish:"finish date",
-        }],
+        edu:[],
         abilities:[{
             id: uniqid(),
-            name: "example of ability",
+            name: "example of ability (click to remove)",
         }],
         practice:[{
             id: uniqid(),
             name: "Company name",
             position: "Your position",
-            task:"Example tasks",
+            description:"Work description",
             date_start: "Start date",
             date_finish:"Finish date",
+            tasks:[{
+              id: uniqid(),
+              name:"example task"
+            }]
           }],
         }
       }
@@ -56,7 +55,6 @@ import Career from './components/Career';
     };
     add = (obj, param) =>{
       this.setState((prevState)=>{
-        console.log(prevState[param]);
         return{
           [param]: [...prevState[param],obj],
         }
@@ -65,22 +63,51 @@ import Career from './components/Career';
     remove = (id, param) =>{
       this.setState((prevState)=>{
         const updatedState = prevState[param].filter((obj)=>{
-          if(obj.id !==id){
+          console.log(obj.id);
+          console.log(id);
+          if(obj.id !== id){
             return obj;
           } 
         });
+        console.log();
         return{
-          abilities: updatedState,
+          [param]: updatedState,
         }
       })}
+      addComplex = (id,object) =>{
+        console.log(id);
+        console.log(object);
+        this.setState((prevState)=>{
+          const updatedState =  prevState.practice.map((obj)=>{
+            if(obj.id === id){
+              return {
+                ...obj,
+                tasks: [...obj.tasks,object],
+              }
+            }
+            return obj;
+          })
+          return {
+            practice: updatedState,
+          }  
+        })
+      }
     render(){
       return (
-        <>
-          <General property={this.state.general} modify={this.modifyGeneral}/><br />
+        <div className='main-container'>
+          <General property={this.state.general} modify={this.modifyGeneral} /><br />
+          <hr />
+          <h2 className='main-heading'>Key Abilities</h2>
           <Abilities list={this.state.abilities} handleClick={this.remove} handleSubmit={this.add}/><br />
-          <Education list={this.state.edu} add={this.add}/><br />
-          <Career list={this.state.practice} add={this.add}/><br />
-        </>
+          <hr />
+          <h2 className='main-heading'>Education</h2>
+          <Education list={this.state.edu} add={this.add} remove={this.remove}/><br />
+          <hr />
+          <h2 className='main-heading'>Career Summary</h2>
+          <Career list={this.state.practice} add={this.add} addComplex={this.addComplex} remove={this.remove}/><br />
+          <hr />
+          <p>I agree to the processing of personal data provided in this document for realising the recruitment process pursuant to the Personal Data Protection Act of 10 May 2018 (Journal of Laws 2018, item 1000) and in agreement with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data, and repealing Directive 95/46/EC (General Data Protection Regulation).</p>
+        </div>
       )
     }
   }

@@ -5,7 +5,9 @@ function Career(props){
         <div>
             <div>
                 {props.list.map((obj)=>{
-                    return <CItem obj={obj} key={obj.id}/>
+                    return <div>
+                            <CItem obj={obj} key={obj.id} addComplex={props.addComplex} remove={props.remove}/>
+                        </div>
                 })}
             </div>
             <CareerForm add={props.add}/>

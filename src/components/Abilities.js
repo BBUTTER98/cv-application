@@ -10,16 +10,18 @@ function Abilities(props){
     }
     return(
         <div>
+            <ul className="abilities-ul">
             {props.list.map((obj)=>{
-                return <div 
+                return <li 
                     onClick={()=>{
                         props.handleClick(obj.id,"abilities");
                     }}
                     key={obj.id}
                 >
                 {obj.name}
-                </div>
+                </li>
             })}
+            </ul>
             <form onSubmit={(e)=>{
                 e.preventDefault();
                 props.handleSubmit(ability,"abilities");

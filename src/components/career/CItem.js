@@ -1,14 +1,11 @@
-import { useState } from "react";
-import Cedit from "./Cedit";
 import Cclear from "./Cclear";
+import TaskForm from "./TaskForm";
 
 function CItem(props){
-    const [edit,setEdit] = useState(false);
-    if(edit){
-        return <Cedit obj = {props.obj}/>
-    }
-    else{
-        return <Cclear obj = {props.obj}/>
-    }
+        return <div>
+            <Cclear obj = {props.obj} remove={props.remove}/>
+            <TaskForm addComplex={props.addComplex} identifier={props.obj.id}/>
+            <br />
+        </div>
 }
 export default CItem;
